@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(user)
-    default_redirect_path = user.company ? company_path(user.company) : root_path
+    default_redirect_path = root_path
     stored_location_for(resource) || default_redirect_path
   end
 end
