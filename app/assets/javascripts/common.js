@@ -1,14 +1,24 @@
+var LOCATIONSHARE = LOCATIONSHARE || {};
+
 $(function() {
   OPENLAYER.initMap();
-  OPENLAYER.addMarker();
+  OPENLAYER.addMarker([45.8167, 15.9833]);
 });
 
+LOCATIONSHARE.PinLocations = {
+  pin: function(locations) {
+    for (location in locations) {
+      OPENLAYER.addMarker(location)
+    }
+  }
+};
+
 OPENLAYER = {
-  addMarker: function() {
-    var map = L.map('map').setView([45.8167, 15.9833], 10);
+  addMarker: function(location) {
+    var map = L.map('map').setView(location, 10);
     var mbUrl = 'https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png';
     L.tileLayer(mbUrl, {id: 'examples.map-i875mjb7'}).addTo(map);
-    var marker = L.marker([45.8167, 15.9833]).bindPopup("Zagreb").addTo(map);
+    var marker = L.marker(location).bindPopup("Zagreb").addTo(map);
   },
 
   initMap: function() {

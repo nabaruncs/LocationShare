@@ -4,10 +4,16 @@
   </h1>
 <% end %>
 
-<div id="map" class="map" style="width: 600px; height: 600px;">
-  <div id="popup" style="padding-bottom: 45px;"></div>
+<div class="row">
+  <h6 class="text-center">Select your friends and tap on share button to share your current location with friends or press share without selecting any friends to share your current location to public</h6>
+  <div class="text-center form-inline">
+    <%= form_tag user_locations_path, :method => 'post', class: 'search-form' do  %>
+      <%= select_tag :user_ids, options_from_collection_for_select(User.all, "id", "email"), { prompt: "--select friends--", multiple: true } %>
+      <%= submit_tag 'Share', class: "btn btn-primary" %>
+    <% end %>
+  </div>
 </div>
-<script type="text/javascript">
 
-
-</script>
+<div id="map" class="map">
+  <div id="popup"></div>
+</div>
