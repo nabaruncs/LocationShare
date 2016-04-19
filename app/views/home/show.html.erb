@@ -1,6 +1,6 @@
 <% unless current_user.present? %>
   <h1 class="text-center">
-    <%= link_to "Loin with us", new_user_session_path, class: "btn btn-primary btn-lg", data: {remote_modal: true} %>
+    <%= link_to "Pleae Loin to view your friends locations", new_user_session_path, class: "btn btn-primary btn-lg", data: {remote_modal: true} %>
   </h1>
 
 <% else %>
@@ -13,8 +13,8 @@
       <% end %>
     </div>
   </div>
-<% end %>
 
-<%= content_tag "div", id: "map", class: "map", data: { location: @locations } do %>
-  <div id="popup"></div>
+  <%= content_tag "div", id: "map", class: "map", data: { location: @locations } do %>
+    <div id="popup"></div>
+  <% end %>
 <% end %>

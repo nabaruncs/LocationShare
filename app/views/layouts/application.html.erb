@@ -10,10 +10,14 @@
     <link rel="stylesheet" href="http://openlayers.org/en/v3.2.1/resources/bootstrap/css/bootstrap.min.css" type="text/css">
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= csrf_meta_tags %>
   </head>
   <body>
-    <%= yield %>
+    <%= render 'navs/main' %>
+    <div class="container">
+      <%= yield %>
+    </div>
     <%= javascript_include_tag "application" %>
-    <%= include_unobtrusive_js %>
   </body>
 </html>

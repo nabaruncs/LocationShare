@@ -1,0 +1,12 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <% if current_user %>
+        <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to "Login", new_user_session_path, data: {remote_modal: true, title: "Login"} %>
+        <%= link_to "Sign up", new_user_registration_path, data: {remote_modal: true, title: "Sign up"} %>
+      <% end %>
+    </div>
+  </div>
+</nav>

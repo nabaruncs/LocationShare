@@ -1,16 +1,6 @@
-var LOCATIONSHARE = LOCATIONSHARE || {};
-
 $(function() {
   OPENLAYER.initMap();
 });
-
-LOCATIONSHARE.PinLocations = {
-  pin: function(locations) {
-    for (location in locations) {
-      OPENLAYER.addMarker(location)
-    }
-  }
-};
 
 OPENLAYER = {
   initMap: function() {
@@ -18,22 +8,22 @@ OPENLAYER = {
       //create empty vector
     });
 
-    //create a bunch of icons and add to source vector
-    for (var i=0;i<50;i++){
+    var locations = $('.map').data('location');
+    for (var i=0; i < locations.length; i++){
+      var latitude = locations[i][0];
+      var longitude = locations[i][1];
 
-        var iconFeature = new ol.Feature({
-          geometry: new
-            ol.geom.Point(ol.proj.transform([Math.random()*360-180, Math.random()*180-90], 'EPSG:4326',   'EPSG:3857')),
-        name: 'Null Island ' + i,
-        population: 4000,
-        rainfall: 500
+      var iconFeature = new ol.Feature({
+        geometry: new
+        ol.geom.Point(ol.proj.transform([longitude, latitude], 'EPSG:4326',   'EPSG:3857')),
+        name: 'Location ' + i
         });
+        
         vectorSource.addFeature(iconFeature);
     }
 
-    //create the style
     var iconStyle = new ol.style.Style({
-      image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
+      image: new ol.style.Icon(({
         anchor: [0.5, 46],
         anchorXUnits: 'fraction',
         anchorYUnits: 'pixels',
@@ -42,9 +32,6 @@ OPENLAYER = {
       }))
     });
 
-
-
-    //add the feature vector to the layer vector, and apply a style to whole layer
     var vectorLayer = new ol.layer.Vector({
       source: vectorSource,
       style: iconStyle
