@@ -15,6 +15,6 @@
   </div>
 <% end %>
 
-<div id="map" class="map">
+<%= content_tag "div", id: "map", class: "map", data: { location: @locations } do %>
   <div id="popup"></div>
-</div>
+<% end %>
