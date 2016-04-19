@@ -1,0 +1,5 @@
+<% unless current_user.present? %>
+  <h1 class="text-center">
+    <%= link_to "Loin with us", new_user_session_path, class: "btn btn-primary btn-lg", data: {remote_modal: true} %>
+  </h1>
+<% end %>
