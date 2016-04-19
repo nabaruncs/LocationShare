@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20160419114438) do
     t.integer  "user_id",    null: false
     t.float    "latitude"
     t.float    "longitude"
+    t.boolean  "public"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -38,7 +39,9 @@ ActiveRecord::Schema.define(version: 20160419114438) do
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
+    t.string   "user_name"
     t.string   "encrypted_password",     default: "", null: false
+    t.integer  "friend_id"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -52,6 +55,7 @@ ActiveRecord::Schema.define(version: 20160419114438) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["friend_id"], name: "index_users_on_friend_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "shared_user_locations", "user_locations"

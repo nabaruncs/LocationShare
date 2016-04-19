@@ -5,6 +5,7 @@ class CreateUserLocations < ActiveRecord::Migration
       t.foreign_key :users
       t.float :latitude
       t.float :longitude
+      t.boolean :public
       t.timestamps null: false
     end
   end
